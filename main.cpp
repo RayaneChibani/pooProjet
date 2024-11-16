@@ -1,9 +1,9 @@
 #include <iostream>
-#include "../terrain.h"
+#include "terrain.h"
 #include <stdlib.h>
 
 int main()
-{
+{LL
     /*int x,y;
     cout << "Donner la largeur : \n";
     cin >>x;
