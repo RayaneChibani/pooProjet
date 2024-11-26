@@ -14,7 +14,6 @@ robot::robot(terrain& t, int startX, int startY)
             obs->notifier(x, y, direction);
         }
     }
-
     void robot::tournerDroite() {
         switch (direction) {
         case 'N': direction = 'E'; break;

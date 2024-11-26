@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1731976673 source:c:\users\lenovo\desktop\projet_qp\pooprojet\main.cpp
+	<iostream>
+	"terrain.h"
+	<stdlib.h>
+
+1731976673 c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.h
+	<string>
+	<vector>
+	<memory>
+
+1732571417 source:c:\users\lenovo\desktop\projet_qp\pooprojet\robot.cpp
+	"robot.h"
+	"terrain.h"
+
+1731979703 c:\users\lenovo\desktop\projet_qp\pooprojet\robot.h
+	<iostream>
+	<vector>
+	<utility>
+
+1731976673 source:c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.cpp
+	"terrain.h"
+	<iostream>
+	<stdlib.h>
+	<fstream>
+

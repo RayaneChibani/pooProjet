@@ -7,22 +7,24 @@
 
 class terrain;
 
-class observateurRobot {
+class observateurRobot
+{
 public:
     virtual void notifier(int x, int y, char direction) = 0;
 };
 
-class robot {
+class robot
+{
 
 private:
     int x, y;
     char direction; // 'N', 'E', 'S', 'W'
-    terrain& d_terrain;
-    std::vector<observateurRobot*> observateurs;
+    terrain &d_terrain;
+    std::vector<observateurRobot *> observateurs;
 
 public:
-    robot(terrain& t, int startX, int startY);
-    void ajouterObservateur(observateurRobot* obs);
+    robot(terrain &t, int startX, int startY);
+    void ajouterObservateur(observateurRobot *obs);
     void notifierObservateurs();
     void tournerDroite();
     void tournerGauche();
@@ -35,4 +37,3 @@ public:
     bool arriveeDevant() const;
 };
 #endif
-

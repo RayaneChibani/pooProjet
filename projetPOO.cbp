@@ -33,6 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="robot.cpp" />
+		<Unit filename="robot.h" />
+		<Unit filename="terrain.cpp" />
+		<Unit filename="terrain.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
