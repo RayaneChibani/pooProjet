@@ -10,18 +10,12 @@ class terrain;
 class observateurRobot
 {
 public:
+    virtual ~observateurRobot() = default;
     virtual void notifier(int x, int y, char direction) = 0;
 };
 
 class robot
 {
-
-private:
-    int x, y;
-    char direction; // 'N', 'E', 'S', 'W'
-    terrain &d_terrain;
-    std::vector<observateurRobot *> observateurs;
-
 public:
     robot(terrain &t, int startX, int startY);
     void ajouterObservateur(observateurRobot *obs);
@@ -35,5 +29,11 @@ public:
     bool arriveeAdroite() const;
     bool arriveeAgauche() const;
     bool arriveeDevant() const;
+private:
+    int x, y;
+    char direction; // 'N', 'E', 'S', 'W'
+    terrain &d_terrain;
+    std::vector<observateurRobot*> observateurs;
+
 };
 #endif

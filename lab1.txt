@@ -5,6 +5,6 @@ x-xx------x---------
 x-xx-xxxx-x---xxxxxx
 x-x--x----xxxxx----x
 xx---x-xx-------xxxx
-xxxxxx-xxx-x@xx----x
+xxxxxx-xxx-xxxx----x
 x----------xxxxxxxxx
 xxxxxxxxxxxx--------

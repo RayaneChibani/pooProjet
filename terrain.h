@@ -10,7 +10,7 @@ public :
     void lireFichier(const std::string& fichier);
     void afficher() const;
     char getCase(int x, int y) const;
-    void setCase(int x, int y, char c);
+    void setCase(int x, int y,const char &c);
     std::pair<int, int> getDepart() const;
     std::pair<int, int> getArrivee() const;
 private:

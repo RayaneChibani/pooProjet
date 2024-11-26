@@ -10,7 +10,7 @@ int main()
     cout << "Donner la longueur : \n";
     cin >>y;
     **/
-    std::string file="../lab1.txt";
+    std::string file="C:/Users/Lenovo/Desktop/Projet_QP/pooProjet/lab2.txt";
     terrain t{file};
     t.afficher();
     return 0;
