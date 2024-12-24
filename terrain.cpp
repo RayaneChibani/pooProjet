@@ -3,24 +3,25 @@
 #include <stdlib.h>
 #include <fstream>
 
-terrain::terrain(const std::string& fichier) {
-    lireFichier(fichier);
+terrain::terrain(const std::string& fichier):grille{},depart{},arrivee{},largeur{}, hauteur{}{
+    FichierLabyrinthe(fichier);
     }
 
-void terrain::lireFichier(const std::string& fichier) {
-        std::ifstream fichierLab(fichier, std::ifstream::in);
+void terrain::FichierLabyrinthe(const std::string& fichier){
+
+        std::ifstream fichierLab(fichier);
 
         if (!fichierLab) {
             std::cout << "Erreur : Impossible de lire le fichier. \n";
         }
 
-        grille.clear();
         std::string ligne;
         while (std::getline(fichierLab, ligne)) {
             grille.push_back(ligne);
         }
+
         hauteur = grille.size();
-        largeur = grille.empty() ? 0 : grille[0].size();
+        largeur = grille[0].size();
 
         for (int y = 0; y < hauteur; ++y) {
             for (int x = 0; x < largeur; ++x) {
@@ -29,19 +30,24 @@ void terrain::lireFichier(const std::string& fichier) {
             }
         }
     }
-void terrain::afficher() const {
+void terrain::afficherTerrain() const {
         for (const auto& ligne : grille) {
             std::cout << ligne << '\n';
         }
     }
-char terrain::getCase(int x, int y) const {
+
+char terrain::getCaseTerrain(int x, int y) const {
         return grille[y][x];
     }
 
-void terrain::setCase(int x, int y, char c) {
+void terrain::setCaseTerrain(int x, int y, const char &c) {
         grille[y][x] = c;
     }
 
 std::pair<int, int> terrain::getDepart() const { return depart; }
 
 std::pair<int, int> terrain::getArrivee() const { return arrivee; }
+
+int terrain::largeurGrille()const { return largeur;}
+int terrain::hauteurGrille()const { return hauteur;}
+
