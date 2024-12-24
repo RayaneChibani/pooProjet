@@ -4,15 +4,19 @@
 #include <string>
 #include <vector>
 #include <memory>
+
+
 class terrain {
 public :
     terrain(const std::string& fichier);
-    void lireFichier(const std::string& fichier);
-    void afficher() const;
-    char getCase(int x, int y) const;
-    void setCase(int x, int y, char c);
+    void FichierLabyrinthe(const std::string& fichier);
+    void afficherTerrain() const;
+    char getCaseTerrain(int x, int y) const;
+    void setCaseTerrain(int x, int y,const char &c);
     std::pair<int, int> getDepart() const;
     std::pair<int, int> getArrivee() const;
+    int largeurGrille()const;
+    int hauteurGrille()const;
 private:
     std::vector<std::string> grille;
     std::pair<int, int> depart, arrivee;
