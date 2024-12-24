@@ -44,7 +44,7 @@ void algorithmeMainDroite(robot& robot) {
 
 int main()
 {
-    std::string file="lab2.txt";
+    std::string file="lab1.txt";
     terrain t{file};
     //t.afficherTerrain();
 
