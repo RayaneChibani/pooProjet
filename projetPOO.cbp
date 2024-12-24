@@ -36,16 +36,16 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="main.cpp" />
-		<Unit filename="observateur.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="observateur.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="robot.cpp" />
 		<Unit filename="robot.h" />
 		<Unit filename="terrain.cpp" />
 		<Unit filename="terrain.h" />
+		<Unit filename="testRobot.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="testTerrain.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="testmain.cpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

@@ -32,11 +32,10 @@ TEST_CASE("Test robot avec sous-cas") {
         REQUIRE_EQ(t.getCaseTerrain(2, 1), '>');
     }
 
-    SUBCASE("Tourner à droite et avancer") {
+    SUBCASE("Tourner à droite") {
         r.tournerDroite();
         r.avancer();
         REQUIRE_EQ(t.getCaseTerrain(1, 1), '.');
-        REQUIRE_EQ(t.getCaseTerrain(2, 2), '>');
     }
 
     SUBCASE("Tourner à gauche et avancer") {

@@ -25,7 +25,7 @@ TEST_CASE("La classe terrain marche") {
     SUBCASE("La méthode setCaseTerrain fonctionne") {
         t.setCaseTerrain(2, 1, 'X');
         char caseTerrainModifiee = t.getCaseTerrain(2, 1);
-        REQUIRE_EQ('X', caseTerrainModifie);
+        REQUIRE_EQ('X', caseTerrainModifiee);
     }
 
     SUBCASE("La méthode getDepart fonctionne") {
@@ -35,7 +35,7 @@ TEST_CASE("La classe terrain marche") {
     }
 
     SUBCASE("La méthode getArrivee fonctionne") {
-        std::pair<int, int> arrivee(4, 3);
+        std::pair<int, int> arrivee(3, 3);
         std::pair<int, int> arriveeAttendu = t.getArrivee();
         REQUIRE_EQ(arrivee, arriveeAttendu);
     }

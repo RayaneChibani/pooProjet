@@ -21,6 +21,10 @@ public:
     robot(terrain &t);
     void ajouterObservateur(observateurRobot *obs);
     void notifierObservateurs();
+    void directionRobot();
+    void MisAJourDroite(int& x, int& y);
+    void MisAJourGauche(int& x, int& y);
+    void MisAJourDevant(int& x, int& y);
     void tournerDroite();
     void tournerGauche();
     void avancer();

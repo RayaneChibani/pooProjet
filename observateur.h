@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-class observateurRobot
+/*class observateurRobot
 {
 public:
     virtual ~observateurRobot() = default;
@@ -16,5 +16,5 @@ class EnregistreurRobot : public observateurRobot {
 public:
     void notifier(int x, int y, const std::char& direction) override;
 };
-
+*/
 #endif // OBSERVATEUR_H_INCLUDED

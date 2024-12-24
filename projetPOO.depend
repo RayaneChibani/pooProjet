@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1734989594 source:c:\users\lenovo\desktop\projet_qp\pooprojet\main.cpp
+1735043141 source:c:\users\lenovo\desktop\projet_qp\pooprojet\main.cpp
 	<iostream>
 	"terrain.h"
+	"robot.h"
 	<stdlib.h>
 
 1735001099 c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.h
@@ -9,11 +10,11 @@
 	<vector>
 	<memory>
 
-1735005933 source:c:\users\lenovo\desktop\projet_qp\pooprojet\robot.cpp
+1735042774 source:c:\users\lenovo\desktop\projet_qp\pooprojet\robot.cpp
 	"robot.h"
 	"terrain.h"
 
-1735005908 c:\users\lenovo\desktop\projet_qp\pooprojet\robot.h
+1735037309 c:\users\lenovo\desktop\projet_qp\pooprojet\robot.h
 	<iostream>
 	<vector>
 	<utility>
@@ -69,4 +70,11 @@
 	<io.h>
 	<sys/time.h>
 	<unistd.h>
+
+1735042980 source:c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.cpp
+	"observateur.h"
+
+1735042968 c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.h
+	<string>
+	<iostream>
 
