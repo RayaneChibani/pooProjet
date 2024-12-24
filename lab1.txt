@@ -5,6 +5,6 @@ x-xx------x---------
 x-xx-x-xx-x---xxxxxx
 x-x--x----xxxxx----x
 xx---x-xx-------xxxx
-xxxxxx-xxx-x>xx----x
+xxxxxx-xxx-x-xx----x
 x------------xxxxxxx
 xxxxxxxxxxxx-------A
