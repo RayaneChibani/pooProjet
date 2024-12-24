@@ -2,8 +2,7 @@
 #include "terrain.h"
 
 
-robot::robot(terrain& t, int startX, int startY)
-        : d_terrain{t}, x{startX}, y{startY}, direction{'E'} {}
+robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().second}, direction{'E'} {}
 
     void robot::ajouterObservateur(observateurRobot* obs) {
         observateurs.push_back(obs);
@@ -42,10 +41,10 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': ny++; break;
         case 'W': nx--; break;
         }
-        if (d_terrain.getCase(nx, ny) != 'x') {
-            d_terrain.setCase(x, y, '.');
+        if (d_terrain.getCaseTerrain(nx, ny) != '#') {
+            d_terrain.setCaseTerrain(x, y, '.');
             x = nx; y = ny;
-            d_terrain.setCase(x, y, '>');
+            d_terrain.setCaseTerrain(x, y, '>');
         }
         notifierObservateurs();
     }
@@ -58,7 +57,7 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': ny++; break;
         case 'W': nx--; break;
         }
-        return d_terrain.getCase(nx, ny) == 'x';
+        return d_terrain.getCaseTerrain(nx, ny) == '#';
     }
 
     bool robot::obstacleAgauche() const {
@@ -69,7 +68,7 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': nx++; break;
         case 'W': ny++; break;
         }
-        return d_terrain.getCase(nx, ny) == 'x';
+        return d_terrain.getCaseTerrain(nx, ny) == '#';
     }
 
     bool robot::obstacleAdroite() const {
@@ -80,7 +79,7 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': nx--; break;
         case 'W': ny--; break;
         }
-        return d_terrain.getCase(nx, ny) == 'x';
+        return d_terrain.getCaseTerrain(nx, ny) == '#';
     }
 
     bool robot::arriveeDevant() const {
@@ -91,7 +90,7 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': ny++; break;
         case 'W': nx--; break;
         }
-        return d_terrain.getCase(nx, ny) == 'A';
+        return d_terrain.getCaseTerrain(nx, ny) == 'A';
     }
 
     bool robot::arriveeAgauche() const {
@@ -102,7 +101,7 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': nx++; break;
         case 'W': ny++; break;
         }
-        return d_terrain.getCase(nx, ny) == 'A';
+        return d_terrain.getCaseTerrain(nx, ny) == 'A';
     }
 
     bool robot::arriveeAdroite() const {
@@ -113,5 +112,5 @@ robot::robot(terrain& t, int startX, int startY)
         case 'S': nx--; break;
         case 'W': ny--; break;
         }
-        return d_terrain.getCase(nx, ny) == 'A';
+        return d_terrain.getCaseTerrain(nx, ny) == 'A';
     }

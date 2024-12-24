@@ -4,10 +4,10 @@
 #include <fstream>
 
 terrain::terrain(const std::string& fichier):grille{},depart{},arrivee{},largeur{}, hauteur{}{
-    lireFichier(fichier);
+    FichierLabyrinthe(fichier);
     }
 
-void terrain::lireFichier(const std::string& fichier){
+void terrain::FichierLabyrinthe(const std::string& fichier){
 
         std::ifstream fichierLab(fichier);
 
@@ -30,20 +30,24 @@ void terrain::lireFichier(const std::string& fichier){
             }
         }
     }
-void terrain::afficher() const {
+void terrain::afficherTerrain() const {
         for (const auto& ligne : grille) {
             std::cout << ligne << '\n';
         }
     }
 
-char terrain::getCase(int x, int y) const {
+char terrain::getCaseTerrain(int x, int y) const {
         return grille[y][x];
     }
 
-void terrain::setCase(int x, int y, const char &c) {
+void terrain::setCaseTerrain(int x, int y, const char &c) {
         grille[y][x] = c;
     }
 
 std::pair<int, int> terrain::getDepart() const { return depart; }
 
 std::pair<int, int> terrain::getArrivee() const { return arrivee; }
+
+int terrain::largeurGrille()const { return largeur;}
+int terrain::hauteurGrille()const { return hauteur;}
+

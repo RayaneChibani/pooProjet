@@ -17,7 +17,8 @@ public:
 class robot
 {
 public:
-    robot(terrain &t, int startX, int startY);
+
+    robot(terrain &t);
     void ajouterObservateur(observateurRobot *obs);
     void notifierObservateurs();
     void tournerDroite();
@@ -29,9 +30,10 @@ public:
     bool arriveeAdroite() const;
     bool arriveeAgauche() const;
     bool arriveeDevant() const;
+
 private:
-    int x, y;
-    char direction; // 'N', 'E', 'S', 'W'
+    int x,y;
+    char direction;
     terrain &d_terrain;
     std::vector<observateurRobot*> observateurs;
 
