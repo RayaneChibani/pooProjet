@@ -1,25 +1,26 @@
 # depslib dependency file v1.0
-1735043141 source:c:\users\lenovo\desktop\projet_qp\pooprojet\main.cpp
+1735096403 source:c:\users\lenovo\desktop\projet_qp\pooprojet\main.cpp
 	<iostream>
 	"terrain.h"
-	"robot.h"
 	<stdlib.h>
+	"robot.h"
+	<windows.h>
 
-1735001099 c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.h
+1735091390 c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.h
 	<string>
 	<vector>
 	<memory>
 
-1735042774 source:c:\users\lenovo\desktop\projet_qp\pooprojet\robot.cpp
+1735096387 source:c:\users\lenovo\desktop\projet_qp\pooprojet\robot.cpp
 	"robot.h"
 	"terrain.h"
 
-1735037309 c:\users\lenovo\desktop\projet_qp\pooprojet\robot.h
+1735093618 c:\users\lenovo\desktop\projet_qp\pooprojet\robot.h
 	<iostream>
 	<vector>
 	<utility>
 
-1735001112 source:c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.cpp
+1735091392 source:c:\users\lenovo\desktop\projet_qp\pooprojet\terrain.cpp
 	"terrain.h"
 	<iostream>
 	<stdlib.h>
@@ -71,10 +72,11 @@
 	<sys/time.h>
 	<unistd.h>
 
-1735042980 source:c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.cpp
+1735094829 source:c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.cpp
+	<fstream>
 	"observateur.h"
 
-1735042968 c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.h
+1735094784 c:\users\lenovo\desktop\projet_qp\pooprojet\observateur.h
 	<string>
 	<iostream>
 

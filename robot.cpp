@@ -1,10 +1,22 @@
 #include "robot.h"
 #include "terrain.h"
 
+constexpr char Nord = 'N';
+constexpr char EST = 'E';
+constexpr char SUD = 'S';
+constexpr char OUEST = 'W';
+constexpr char OBSTACLE = '#';
+constexpr char ItineraireRobot = '.';
+constexpr char DirectionNordRobot = '^';
+constexpr char DirectionEstRobot = '>';
+constexpr char DirectionSudRobot = 'v';
+constexpr char DirectionOuestRobot = '<';
 
-robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().second}, direction{'E'} {}
 
-    void robot::ajouterObservateur(observateurRobot* obs) {
+
+robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().second}, direction{EST} {}
+
+      void robot::ajouterObservateur(observateurRobot* obs) {
         observateurs.push_back(obs);
     }
 
@@ -13,104 +25,110 @@ robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().
             obs->notifier(x, y, direction);
         }
     }
+
     void robot::tournerDroite() {
         switch (direction) {
-        case 'N': direction = 'E'; break;
-        case 'E': direction = 'S'; break;
-        case 'S': direction = 'W'; break;
-        case 'W': direction = 'N'; break;
+        case Nord : direction = EST; break;
+        case EST  : direction = SUD; break;
+        case SUD  : direction = OUEST; break;
+        case OUEST: direction = Nord; break;
         }
         notifierObservateurs();
     }
 
     void robot::tournerGauche() {
         switch (direction) {
-        case 'N': direction = 'W'; break;
-        case 'W': direction = 'S'; break;
-        case 'S': direction = 'E'; break;
-        case 'E': direction = 'N'; break;
+        case Nord : direction = OUEST; break;
+        case EST  : direction = Nord; break;
+        case SUD  : direction = EST; break;
+        case OUEST: direction = SUD; break;
         }
         notifierObservateurs();
     }
 
-    void robot::avancer() {
-        int nx = x, ny = y;
+    void robot::MisAJourDirectionDevant(int &x, int &y) const{
         switch (direction) {
-        case 'N': ny--; break;
-        case 'E': nx++; break;
-        case 'S': ny++; break;
-        case 'W': nx--; break;
+        case Nord : y--; break;
+        case EST  : x++; break;
+        case SUD  : y++; break;
+        case OUEST: x--; break;
         }
-        if (d_terrain.getCaseTerrain(nx, ny) != '#') {
-            d_terrain.setCaseTerrain(x, y, '.');
+    }
+
+    void robot::avancer() {
+        int nx{x}, ny{y};
+        MisAJourDirectionDevant(nx,ny);
+        if (d_terrain.getCaseTerrain(nx, ny) != OBSTACLE) {
+            d_terrain.setCaseTerrain(x, y, ItineraireRobot);
             x = nx; y = ny;
-            d_terrain.setCaseTerrain(x, y, '>');
+            switch (direction) {
+            case Nord : d_terrain.setCaseTerrain(x, y,DirectionNordRobot); break;
+            case EST  : d_terrain.setCaseTerrain(x, y,DirectionEstRobot);break;
+            case SUD  : d_terrain.setCaseTerrain(x, y,DirectionSudRobot); break;
+            case OUEST: d_terrain.setCaseTerrain(x, y,DirectionOuestRobot); break;
+        }
         }
         notifierObservateurs();
     }
 
     bool robot::obstacleDevant() const {
-        int nx = x, ny = y;
-        switch (direction) {
-        case 'N': ny--; break;
-        case 'E': nx++; break;
-        case 'S': ny++; break;
-        case 'W': nx--; break;
-        }
-        return d_terrain.getCaseTerrain(nx, ny) == '#';
-    }
-
-    bool robot::obstacleAgauche() const {
-        int nx = x, ny = y;
-        switch (direction) {
-        case 'N': nx--; break;
-        case 'E': ny--; break;
-        case 'S': nx++; break;
-        case 'W': ny++; break;
-        }
-        return d_terrain.getCaseTerrain(nx, ny) == '#';
-    }
-
-    bool robot::obstacleAdroite() const {
-        int nx = x, ny = y;
-        switch (direction) {
-        case 'N': nx++; break;
-        case 'E': ny++; break;
-        case 'S': nx--; break;
-        case 'W': ny--; break;
-        }
-        return d_terrain.getCaseTerrain(nx, ny) == '#';
+        int nx{x}, ny{y};
+        MisAJourDirectionDevant(nx,ny);
+        return d_terrain.getCaseTerrain(nx,ny) == OBSTACLE;
     }
 
     bool robot::arriveeDevant() const {
         int nx = x, ny = y;
+        MisAJourDirectionDevant(nx,ny);
+        return d_terrain.getCaseTerrain(nx, ny) == ARRIVEE;
+    }
+
+     void robot::MisAJourDirectionGauche(int &x, int &y) const{
         switch (direction) {
-        case 'N': ny--; break;
-        case 'E': nx++; break;
-        case 'S': ny++; break;
-        case 'W': nx--; break;
+        case Nord : x--; break;
+        case EST  : y--; break;
+        case SUD  : x++; break;
+        case OUEST: y++; break;
         }
-        return d_terrain.getCaseTerrain(nx, ny) == 'A';
+    }
+
+    bool robot::obstacleAgauche() const {
+        int nx = x, ny = y;
+        MisAJourDirectionGauche(nx,ny);
+        return d_terrain.getCaseTerrain(nx, ny) == OBSTACLE;
     }
 
     bool robot::arriveeAgauche() const {
         int nx = x, ny = y;
+        MisAJourDirectionGauche(nx,ny);
+        return d_terrain.getCaseTerrain(nx, ny) == ARRIVEE;
+    }
+
+     void robot::MisAJourDirectionDroite(int &x, int &y) const{
         switch (direction) {
-        case 'N': nx--; break;
-        case 'E': ny--; break;
-        case 'S': nx++; break;
-        case 'W': ny++; break;
+        case Nord : x++; break;
+        case EST  : y++; break;
+        case SUD  : x--; break;
+        case OUEST: y--; break;
         }
-        return d_terrain.getCaseTerrain(nx, ny) == 'A';
+    }
+
+    bool robot::obstacleAdroite() const {
+        int nx = x, ny = y;
+        MisAJourDirectionDroite(nx,ny);
+        return d_terrain.getCaseTerrain(nx, ny) == OBSTACLE;
     }
 
     bool robot::arriveeAdroite() const {
         int nx = x, ny = y;
-        switch (direction) {
-        case 'N': nx++; break;
-        case 'E': ny++; break;
-        case 'S': nx--; break;
-        case 'W': ny--; break;
-        }
-        return d_terrain.getCaseTerrain(nx, ny) == 'A';
+        MisAJourDirectionDroite(nx,ny);
+        return d_terrain.getCaseTerrain(nx, ny) == ARRIVEE;
     }
+    bool robot::estSurSortie() const {
+        auto sortie = d_terrain.getArrivee();
+        return (x == sortie.first && y == sortie.second);
+    }
+    terrain robot::getTerrain() const{
+        return d_terrain;
+    }
+

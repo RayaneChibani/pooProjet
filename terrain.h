@@ -5,6 +5,9 @@
 #include <vector>
 #include <memory>
 
+constexpr char DEPART = 'D';
+constexpr char ARRIVEE = 'A';
+
 
 class terrain {
 public :

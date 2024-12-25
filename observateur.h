@@ -5,16 +5,11 @@
 #include <iostream>
 
 
-/*class observateurRobot
+class observateurRobot
 {
 public:
     virtual ~observateurRobot() = default;
-    virtual void notifier(int x, int y, const std::char& direction) = 0;
+    virtual void notifier(int x, int y, const char& direction) const;
 };
 
-class EnregistreurRobot : public observateurRobot {
-public:
-    void notifier(int x, int y, const std::char& direction) override;
-};
-*/
 #endif // OBSERVATEUR_H_INCLUDED

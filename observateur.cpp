@@ -1,6 +1,10 @@
+#include <fstream>
 #include "observateur.h"
 
-/*void EnregistreurRobot::notifier(int x, int y, const std::string& direction){
-        std::cout << "Déplacement : (" << x << ", " << y << ") Direction : " << direction << std::endl;
-    }
-*/
+void observateurRobot::notifier(int x, int y, const char& direction) const {
+    std::cout << "Deplacement : (" << x << ", " << y << ") Direction : " << direction << std::endl;
+    std::ofstream logFile("deplacements.log", std::ios::app);
+    logFile << "Deplacement : (" << x << ", " << y << ") Direction : " << direction << std::endl;
+    logFile.close();
+}
+

@@ -12,6 +12,7 @@ TEST_CASE("Test robot avec sous-cas") {
             << "# # #\n"
             << "#  A#\n"
             << "#####\n";
+            //===> ||
     fichier.close();
 
     terrain t(nomFichier);
@@ -32,29 +33,29 @@ TEST_CASE("Test robot avec sous-cas") {
         REQUIRE_EQ(t.getCaseTerrain(2, 1), '>');
     }
 
-    SUBCASE("Tourner à droite") {
+    SUBCASE("Tourner à droite et avancer") {
         r.tournerDroite();
         r.avancer();
         REQUIRE_EQ(t.getCaseTerrain(1, 1), '.');
+        REQUIRE_EQ(t.getCaseTerrain(2, 2), '#');
     }
 
     SUBCASE("Tourner à gauche et avancer") {
         r.tournerGauche();
         r.avancer();
-        REQUIRE_EQ(t.getCaseTerrain(1, 1), '.');
-        REQUIRE_EQ(t.getCaseTerrain(0, 1), '>');
+        REQUIRE_EQ(t.getCaseTerrain(1, 1), 'D');
     }
 
-    SUBCASE("Détection des obstacles") {
+    SUBCASE("Detection des obstacles") {
         r.tournerDroite();
         r.tournerDroite();
         REQUIRE_EQ(r.obstacleDevant(), true);
     }
 
-    SUBCASE("Détection de l'arrivée") {
+    SUBCASE("Detection de l'arrivee") {
+        r.avancer();
         r.avancer();
         r.tournerDroite();
-        r.avancer();
         r.avancer();
         REQUIRE_EQ(r.arriveeDevant(), true);
     }

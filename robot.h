@@ -21,20 +21,20 @@ public:
     robot(terrain &t);
     void ajouterObservateur(observateurRobot *obs);
     void notifierObservateurs();
-    void directionRobot();
-    void MisAJourDroite(int& x, int& y);
-    void MisAJourGauche(int& x, int& y);
-    void MisAJourDevant(int& x, int& y);
     void tournerDroite();
     void tournerGauche();
+    void MisAJourDirectionDevant(int &x, int &y) const;
     void avancer();
     bool obstacleDevant() const;
+    bool arriveeDevant() const;
+    void MisAJourDirectionGauche(int &x, int &y) const;
     bool obstacleAgauche() const;
+    bool arriveeAgauche() const;
+    void MisAJourDirectionDroite(int &x, int &y) const;
     bool obstacleAdroite() const;
     bool arriveeAdroite() const;
-    bool arriveeAgauche() const;
-    bool arriveeDevant() const;
-
+    bool estSurSortie() const;
+    terrain getTerrain() const;
 private:
     int x,y;
     char direction;
