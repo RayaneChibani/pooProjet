@@ -36,6 +36,8 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="observateur.cpp" />
+		<Unit filename="observateur.h" />
 		<Unit filename="robot.cpp" />
 		<Unit filename="robot.h" />
 		<Unit filename="terrain.cpp" />

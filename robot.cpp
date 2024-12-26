@@ -1,10 +1,11 @@
 #include "robot.h"
 #include "terrain.h"
+//#include "observateur.h"
 
 constexpr char Nord = 'N';
 constexpr char EST = 'E';
 constexpr char SUD = 'S';
-constexpr char OUEST = 'W';
+constexpr char OUEST = 'O';
 constexpr char OBSTACLE = '#';
 constexpr char ItineraireRobot = '.';
 constexpr char DirectionNordRobot = '^';
@@ -14,9 +15,9 @@ constexpr char DirectionOuestRobot = '<';
 
 
 
-robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().second}, direction{EST} {}
+robot::robot(terrain& terrain): d_terrain{terrain}, x{terrain.getDepart().first}, y{terrain.getDepart().second}, direction{EST} {}
 
-      void robot::ajouterObservateur(observateurRobot* obs) {
+   /*   void robot::ajouterObservateur(observateurRobot* obs) {
         observateurs.push_back(obs);
     }
 
@@ -25,7 +26,7 @@ robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().
             obs->notifier(x, y, direction);
         }
     }
-
+*/
     void robot::tournerDroite() {
         switch (direction) {
         case Nord : direction = EST; break;
@@ -33,7 +34,7 @@ robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().
         case SUD  : direction = OUEST; break;
         case OUEST: direction = Nord; break;
         }
-        notifierObservateurs();
+       // notifierObservateurs();
     }
 
     void robot::tournerGauche() {
@@ -43,7 +44,7 @@ robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().
         case SUD  : direction = EST; break;
         case OUEST: direction = SUD; break;
         }
-        notifierObservateurs();
+      //  notifierObservateurs();
     }
 
     void robot::MisAJourDirectionDevant(int &x, int &y) const{
@@ -68,7 +69,7 @@ robot::robot(terrain& t): d_terrain{t}, x{t.getDepart().first}, y{t.getDepart().
             case OUEST: d_terrain.setCaseTerrain(x, y,DirectionOuestRobot); break;
         }
         }
-        notifierObservateurs();
+      //  notifierObservateurs();
     }
 
     bool robot::obstacleDevant() const {

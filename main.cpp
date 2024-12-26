@@ -4,14 +4,18 @@
 #include "robot.h"
 #include <windows.h> // Pour Sleep (en millisecondes)
 
-class EnregistreurRobot;
+
+void afficheSimulation(robot& robot){
+        robot.getTerrain().afficherTerrain();
+        Sleep(500);
+        system("cls");
+}
+int casesParcourrues(int &nombres){return nombres;}
 
 void algorithmeMainDroite(robot& robot) {
     int casesParcourues{0};
-    while (true) {
-        robot.getTerrain().afficherTerrain();
-        Sleep(1000);
-        system("cls");
+    while (true && !robot.estSurSortie()) {
+        afficheSimulation(robot);
         robot.tournerDroite();
         if (!robot.obstacleDevant()) {
             robot.avancer();
@@ -25,21 +29,18 @@ void algorithmeMainDroite(robot& robot) {
                 robot.tournerGauche();
             }
         }
-        if (robot.estSurSortie()) {
-            std::cout << "Le robot a trouve la sortie !" << std::endl;
-            break;
-        }
     }
-    std::cout << "Nombre de cases parcourrues : " << casesParcourues << std::endl;
+     std::cout << "Le robot a trouve la sortie !" << std::endl;
+     std::cout << "Nombre de cases parcourrues : " << casesParcourues << std::endl;
 }
 
 
 
 int main()
 {
-    std::string file="lab1.txt";
-    terrain t{file};
-    robot r{t};
-    algorithmeMainDroite(r);
+    std::string file="labyrinthe.txt";
+    terrain terrain{file};
+    robot robot{terrain};
+    algorithmeMainDroite(robot);
     return 0;
 }

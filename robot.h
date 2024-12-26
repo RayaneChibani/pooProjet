@@ -7,20 +7,15 @@
 
 class terrain;
 
-class observateurRobot
-{
-public:
-    virtual ~observateurRobot() = default;
-    virtual void notifier(int x, int y, char direction) = 0;
-};
+//class observateurRobot;
 
 class robot
 {
 public:
 
-    robot(terrain &t);
-    void ajouterObservateur(observateurRobot *obs);
-    void notifierObservateurs();
+    robot(terrain &terrain);
+  //  void ajouterObservateur(observateurRobot *obs);
+  //  void notifierObservateurs();
     void tournerDroite();
     void tournerGauche();
     void MisAJourDirectionDevant(int &x, int &y) const;
@@ -39,7 +34,7 @@ private:
     int x,y;
     char direction;
     terrain &d_terrain;
-    std::vector<observateurRobot*> observateurs;
+  //  std::vector<observateurRobot*> observateurs;
 
 };
 #endif
