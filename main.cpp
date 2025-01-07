@@ -1,20 +1,22 @@
 #include <iostream>
-#include "terrain.h"
 #include <stdlib.h>
+#include "terrain.h"
 #include "robot.h"
-#include <thread> // Pour std::this_thread::sleep_for
-#include <chrono> // Pour std::chrono::milliseconds
-class EnregistreurRobot;
+#include "observateur.h"
+#include <windows.h> // Pour Sleep (en millisecondes)
+#include <memory>
 
-void algorithmeMainDroite(robot& robot) {
-    int casesParcourues = 0; // Compteur des cases parcourues
-
-    while (true) {
-        // Afficher l'état actuel du terrain
+void afficheSimulation(robot& robot){
         robot.getTerrain().afficherTerrain();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Pause de 500 ms
+        Sleep(500);
         system("cls");
-        // Tourner et avancer selon l'algorithme
+}
+int casesParcourrues(int &nombres){return nombres;}
+
+void algorithmeMainDroite(robot& robot, std::unique_ptr<observateurRobotDeplacements> obserRobotDeplacements) {
+    int casesParcourues{0};
+    while (true && !robot.estSurSortie()) {
+        afficheSimulation(robot);
         robot.tournerDroite();
         if (!robot.obstacleDevant()) {
             robot.avancer();
@@ -28,37 +30,29 @@ void algorithmeMainDroite(robot& robot) {
                 robot.tournerGauche();
             }
         }
-
-        // Condition de sortie
-        if (robot.estSurSortie()) {
-            std::cout << "Le robot a trouvé la sortie !" << std::endl;
-            break;
-        }
     }
-
-    // Afficher le nombre de cases parcourues
-    std::cout << "Nombre de cases parcourues : " << casesParcourues << std::endl;
+    robot.getTerrain().afficherTerrain();
+     std::cout << "Le robot a trouve la sortie !" << std::endl;
+     std::cout << "Nombre de cases parcourrues : " << casesParcourues << std::endl;
+     std::cout << "Nombre de cases parcourrues de la part de l'observateur : " << obserRobotDeplacements->nbDeplacements() << std::endl;
 }
 
 
 
 int main()
 {
-    std::string file="lab1.txt";
-    terrain t{file};
-    //t.afficherTerrain();
-
-                      // Crée un robot lié au terrain
-
-    // Ajouter un observateur pour suivre ses déplacements
-    //EnregistreurRobot obs;
+    std::string file="lab2.txt";
+    terrain terrain{file};
+    robot test_robot{terrain};
 
 
-    // Appeler l'algorithme pour résoudre le labyrinthe
 
-    robot r{t};
-     //r.ajouterObservateur(&obs);
-    algorithmeMainDroite(r);
+    std::unique_ptr<observateurRobotDeplacements> obserRobotDeplacements = std::make_unique<observateurRobotDeplacements>();
 
+
+    test_robot.ajouterObservateur(std::make_unique<observateurRobotDirection>());
+    test_robot.ajouterObservateur(std::move(obserRobotDeplacements));
+
+    algorithmeMainDroite(test_robot, std::move(obserRobotDeplacements));
     return 0;
 }
