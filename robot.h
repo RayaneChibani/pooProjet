@@ -4,39 +4,39 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <memory>
 
 class terrain;
 
-class observateurRobot
-{
-public:
-    virtual ~observateurRobot() = default;
-    virtual void notifier(int x, int y, char direction) = 0;
-};
+class observateurRobot;
 
 class robot
 {
 public:
 
-    robot(terrain &t);
-    void ajouterObservateur(observateurRobot *obs);
+    robot(terrain &terrain);
+    void ajouterObservateur(std::unique_ptr<observateurRobot> observateur);
     void notifierObservateurs();
     void tournerDroite();
     void tournerGauche();
+    void MisAJourDirectionDevant(int &x, int &y) const;
     void avancer();
     bool obstacleDevant() const;
+    bool arriveeDevant() const;
+    void MisAJourDirectionGauche(int &x, int &y) const;
     bool obstacleAgauche() const;
+    bool arriveeAgauche() const;
+    void MisAJourDirectionDroite(int &x, int &y) const;
     bool obstacleAdroite() const;
     bool arriveeAdroite() const;
-    bool arriveeAgauche() const;
-    bool arriveeDevant() const;
     bool estSurSortie() const;
     terrain getTerrain() const;
+    const std::vector<std::unique_ptr<observateurRobot>>& getObservateurs() const;
 private:
     int x,y;
     char direction;
     terrain &d_terrain;
-    std::vector<observateurRobot*> observateurs;
+    std::vector<std::unique_ptr<observateurRobot>> d_observateurs;
 
 };
 #endif
