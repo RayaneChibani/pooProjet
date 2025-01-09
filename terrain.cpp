@@ -25,8 +25,8 @@ void terrain::FichierLabyrinthe(const std::string& fichier){
 
         for (int y = 0; y < hauteur; ++y) {
             for (int x = 0; x < largeur; ++x) {
-                if (grille[y][x] == 'D') depart = {x, y};
-                if (grille[y][x] == 'A') arrivee = {x, y};
+                if (grille[y][x] == DEPART) depart = {x, y};
+                if (grille[y][x] == ARRIVEE) arrivee = {x, y};
             }
         }
     }
@@ -50,4 +50,3 @@ std::pair<int, int> terrain::getArrivee() const { return arrivee; }
 
 int terrain::largeurGrille()const { return largeur;}
 int terrain::hauteurGrille()const { return hauteur;}
-
